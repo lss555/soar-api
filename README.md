@@ -1,2 +1,1 @@
-Soar Counseling Services Inc.
-Cody, WY
+Soar Counseling Services | Cody, WY
