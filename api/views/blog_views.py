@@ -9,10 +9,24 @@ from django.middleware.csrf import get_token
 
 from ..models.blog import Blog
 from ..serializers import BlogSerializer, UserSerializer
+# authentication_classes = [authentication.TokenAuthentication]
+# permission_classes = [permissions.IsAdminUser] these two lines make so only admin users can access a view
 
 # Create your views here.
+
+class ShowPosts(generics.RetrieveAPIView):
+  authentication_classes = ()
+  permission_classes = ()
+  serializer_class = BlogSerializer
+  def get(self, request):
+    """index, with no auth"""
+    posts = Blog.objects.filter()
+    data = BlogSerializer(posts, many=True).data
+    return Response({ 'blogs': data })
+
 class Blogs(generics.ListCreateAPIView):
-    # permission_classes=(IsAuthenticated,)
+    authentication_classes = ()
+    permission_classes = ()
     serializer_class = BlogSerializer
     def get(self, request):
         """Index request"""
