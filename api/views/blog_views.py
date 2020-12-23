@@ -12,14 +12,14 @@ from ..serializers import BlogSerializer, UserSerializer
 
 # Create your views here.
 class Blogs(generics.ListCreateAPIView):
-    permission_classes=(IsAuthenticated,)
+    # permission_classes=(IsAuthenticated,)
     serializer_class = BlogSerializer
     def get(self, request):
         """Index request"""
         # Get all the mangos:
         # mangos = Mango.objects.all()
         # Filter the mangos by owner, so you can only see your owned mangos
-        blogs = Blog.objects.filter(owner=request.user.id)
+        # blogs = Blog.objects.filter(owner=request.user.id)
         # Run the data through the serializer
         data = BlogSerializer(blogs, many=True).data
         return Response({ 'blogs': data })
