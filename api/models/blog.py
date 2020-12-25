@@ -8,6 +8,7 @@ class Blog(models.Model):
   title = models.CharField(max_length=100)
   date = models.DateField()
   text = models.CharField(max_length=1000)
+  image = models.ImageField(null=True, blank=True, upload_to='images/')
   owner = models.ForeignKey(
       get_user_model(),
       on_delete=models.CASCADE

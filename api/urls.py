@@ -1,6 +1,8 @@
 from django.urls import path
 from .views.blog_views import Blogs, BlogDetail, ShowPosts
 from .views.user_views import SignUp, SignIn, SignOut, ChangePassword
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
   	# Restful routing
@@ -11,4 +13,4 @@ urlpatterns = [
     path('sign-in/', SignIn.as_view(), name='sign-in'),
     path('sign-out/', SignOut.as_view(), name='sign-out'),
     path('change-pw/', ChangePassword.as_view(), name='change-pw')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
